@@ -5,6 +5,7 @@ import com.islandsoftware.kollector.model.Category;
 import com.islandsoftware.kollector.model.Product;
 import com.islandsoftware.kollector.repositories.ProductRepository;
 import com.islandsoftware.kollector.request.ProductRequest;
+import com.islandsoftware.kollector.request.ProductUpdateRequest;
 import com.islandsoftware.kollector.response.ProductResponse;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,25 @@ public class ProductService {
 
     public ProductResponse registerProduct(ProductRequest request) {
         var product = new Product();
+
+        BeanUtils.copyProperties(request, product);
+
+        Set<Category> categories = categoryService.getCategoriesById(request.categories());
+
+        product.setCategories(categories);
+        product.setCreatedAt(LocalDateTime.now());
+        product.setUpdatedAt(LocalDateTime.now());
+
+        productRepository.save(product);
+
+        return new ProductResponse(product.getProductId(), product.getName(), product.getDescription(),
+                product.getSpecification(), categoryService.extractCategoryNames(product.getCategories()),
+                product.getQuantity(), product.getPrice(), product.isActive());
+    }
+
+    public ProductResponse updateProduct(UUID id, ProductUpdateRequest request) throws DataNotFoundException {
+
+        var product = this.getProductById(id);
 
         BeanUtils.copyProperties(request, product);
 

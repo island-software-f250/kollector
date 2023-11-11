@@ -3,6 +3,7 @@ package com.islandsoftware.kollector.controller;
 
 import com.islandsoftware.kollector.model.Product;
 import com.islandsoftware.kollector.request.ProductRequest;
+import com.islandsoftware.kollector.request.ProductUpdateRequest;
 import com.islandsoftware.kollector.response.ProductResponse;
 import com.islandsoftware.kollector.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,12 @@ public class ProductController {
     @PostMapping("/product")
     public ResponseEntity<ProductResponse> register(@RequestBody ProductRequest request) {
         var response = service.registerProduct(request);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PutMapping("/product/{id}")
+    public ResponseEntity<ProductResponse> edit(@PathVariable UUID id, @RequestBody ProductUpdateRequest request){
+        var response = service.updateProduct(id, request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
