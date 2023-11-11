@@ -10,7 +10,7 @@
 
 <!-- Marque o tipo deste pull request (e.g., correção de bug, nova funcionalidade, aprimoramento de documentação) -->
 
-- [ ] Correção de Bug
-- [ ] Nova Funcionalidade
-- [ ] Aprimoramento de Documentação
-- [ ] Outro: _______________
+- [ ] 🐛 Correção de Bug
+- [x] ✨ Nova Funcionalidade
+- [ ] 📑 Aprimoramento de Documentação
+- [ ] 🏝 Outro: _______________
