@@ -22,23 +22,23 @@ INSERT INTO tb_categories (category_id, name, created_at, updated_at) VALUES
 
 
 -- Inserir produtos
-INSERT INTO tb_products (product_id, name, description, specification, quantity, price, active, created_at, updated_at) VALUES
-    ('aaa11111-1111-1111-1111-111111111111', 'Smartphone', 'Um ótimo smartphone', 'Especificações do smartphone', 100, 999.99, true, '2023-01-01T00:00:00', '2023-01-01T00:00:00');
-
-INSERT INTO tb_products (product_id, name, description, specification, quantity, price, active, created_at, updated_at) VALUES
-    ('bbb22222-2222-2222-2222-222222222222', 'Camiseta', 'Uma camiseta confortável', 'Especificações da camiseta', 200, 19.99, true, '2023-01-01T00:00:00', '2023-01-01T00:00:00');
-
-INSERT INTO tb_products (product_id, name, description, specification, quantity, price, active, created_at, updated_at) VALUES
-    ('ccc33333-3333-3333-3333-333333333333', 'Fone de Ouvido', 'Um excelente fone de ouvido', 'Especificações do fone de ouvido', 50, 129.99, true, '2023-01-01T00:00:00', '2023-01-01T00:00:00');
-
-INSERT INTO tb_products (product_id, name, description, specification, quantity, price, active, created_at, updated_at) VALUES
-    ('ddd44444-4444-4444-4444-444444444444', 'Livro "Aventuras"', 'Uma emocionante aventura', 'Especificações do livro', 30, 29.99, true, '2023-01-01T00:00:00', '2023-01-01T00:00:00');
-
-INSERT INTO tb_products (product_id, name, description, specification, quantity, price, active, created_at, updated_at) VALUES
-    ('eee55555-5555-5555-5555-555555555555', 'Jogo de Tabuleiro', 'Um emocionante jogo de tabuleiro', 'Especificações do jogo', 40, 39.99, true, '2023-01-01T00:00:00', '2023-01-01T00:00:00');
-
-INSERT INTO PRODUCT_CATEGORY (PRODUCT_ID, CATEGORY_ID) VALUES ('aaa11111-1111-1111-1111-111111111111', '11111111-1111-1111-1111-111111111111');
-INSERT INTO PRODUCT_CATEGORY (PRODUCT_ID, CATEGORY_ID) VALUES ('aaa11111-1111-1111-1111-111111111111', '22222222-2222-2222-2222-222222222222');
-INSERT INTO PRODUCT_CATEGORY (PRODUCT_ID, CATEGORY_ID) VALUES ('aaa11111-1111-1111-1111-111111111111', '44444444-4444-4444-4444-444444444444');
-
-
+-- INSERT INTO tb_products (product_id, name, description, specification, quantity, price, active, created_at, updated_at) VALUES
+--     ('aaa11111-1111-1111-1111-111111111111', 'Smartphone', 'Um ótimo smartphone', 'Especificações do smartphone', 100, 999.99, true, '2023-01-01T00:00:00', '2023-01-01T00:00:00');
+--
+-- INSERT INTO tb_products (product_id, name, description, specification, quantity, price, active, created_at, updated_at) VALUES
+--     ('bbb22222-2222-2222-2222-222222222222', 'Camiseta', 'Uma camiseta confortável', 'Especificações da camiseta', 200, 19.99, true, '2023-01-01T00:00:00', '2023-01-01T00:00:00');
+--
+-- INSERT INTO tb_products (product_id, name, description, specification, quantity, price, active, created_at, updated_at) VALUES
+--     ('ccc33333-3333-3333-3333-333333333333', 'Fone de Ouvido', 'Um excelente fone de ouvido', 'Especificações do fone de ouvido', 50, 129.99, true, '2023-01-01T00:00:00', '2023-01-01T00:00:00');
+--
+-- INSERT INTO tb_products (product_id, name, description, specification, quantity, price, active, created_at, updated_at) VALUES
+--     ('ddd44444-4444-4444-4444-444444444444', 'Livro "Aventuras"', 'Uma emocionante aventura', 'Especificações do livro', 30, 29.99, true, '2023-01-01T00:00:00', '2023-01-01T00:00:00');
+--
+-- INSERT INTO tb_products (product_id, name, description, specification, quantity, price, active, created_at, updated_at) VALUES
+--     ('eee55555-5555-5555-5555-555555555555', 'Jogo de Tabuleiro', 'Um emocionante jogo de tabuleiro', 'Especificações do jogo', 40, 39.99, true, '2023-01-01T00:00:00', '2023-01-01T00:00:00');
+--
+-- INSERT INTO PRODUCT_CATEGORY (PRODUCT_ID, CATEGORY_ID) VALUES ('aaa11111-1111-1111-1111-111111111111', '11111111-1111-1111-1111-111111111111');
+-- INSERT INTO PRODUCT_CATEGORY (PRODUCT_ID, CATEGORY_ID) VALUES ('aaa11111-1111-1111-1111-111111111111', '22222222-2222-2222-2222-222222222222');
+-- INSERT INTO PRODUCT_CATEGORY (PRODUCT_ID, CATEGORY_ID) VALUES ('aaa11111-1111-1111-1111-111111111111', '44444444-4444-4444-4444-444444444444');
+--
+--
