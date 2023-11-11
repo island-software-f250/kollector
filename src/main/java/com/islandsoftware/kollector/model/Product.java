@@ -1,5 +1,6 @@
 package com.islandsoftware.kollector.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -22,6 +23,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID productId;
 
+    @JsonBackReference
     @ManyToMany
     @JoinTable(
             name = "product_category",

@@ -1,5 +1,6 @@
 package com.islandsoftware.kollector.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -24,6 +25,7 @@ public class Category {
     @NotNull
     private String name;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "categories")
     private Set<Product> products;
 
