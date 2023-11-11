@@ -4,15 +4,15 @@ package com.islandsoftware.kollector.controller;
 import com.islandsoftware.kollector.model.Category;
 import com.islandsoftware.kollector.model.Product;
 import com.islandsoftware.kollector.repositories.ProductRepository;
+import com.islandsoftware.kollector.request.ProductRequest;
 import com.islandsoftware.kollector.response.ProductResponse;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -49,6 +49,20 @@ public class ProductController {
         return productOptional.map(
                 product -> new ResponseEntity<>(product, HttpStatus.OK)
         ).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @PostMapping("/product")
+    public ResponseEntity<Product> register(@RequestBody ProductRequest request){
+        Product product = new Product();
+
+        BeanUtils.copyProperties(request, product);
+
+        product.setCreatedAt(LocalDateTime.now());
+        product.setUpdatedAt(LocalDateTime.now());
+
+        Product save = repository.save(product);
+
+        return new ResponseEntity<>(save, HttpStatus.OK);
     }
 
 }
