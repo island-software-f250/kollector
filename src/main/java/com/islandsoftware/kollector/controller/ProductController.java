@@ -1,10 +1,11 @@
 package com.islandsoftware.kollector.controller;
 
 
-import com.islandsoftware.kollector.model.Product;
+import com.islandsoftware.kollector.exceptions.ProductSaveException;
 import com.islandsoftware.kollector.request.ProductRequest;
 import com.islandsoftware.kollector.response.ProductResponse;
 import com.islandsoftware.kollector.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("api/v1/products")
 public class ProductController {
 
     @Autowired
@@ -27,14 +28,28 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> product(@PathVariable UUID id) {
-        var product = service.getProductById(id);
+    public ResponseEntity<ProductResponse> product(@PathVariable UUID id) {
+        var product = service.getOneProduct(id);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
     @PostMapping("/product")
     public ResponseEntity<ProductResponse> register(@RequestBody ProductRequest request) {
-        var response = service.registerProduct(request);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        try {
+            var response = service.registerProduct(request);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception ex) {
+            throw new ProductSaveException("Error registering the product");
+        }
+    }
+
+    @PutMapping("/product/{id}")
+    public ResponseEntity<ProductResponse> edit(@PathVariable UUID id, @RequestBody @Valid ProductRequest request) {
+        try {
+            var response = service.updateProduct(id, request);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception ex) {
+            throw new ProductSaveException("Error updating the product");
+        }
     }
 }

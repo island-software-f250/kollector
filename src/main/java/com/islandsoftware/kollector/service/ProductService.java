@@ -1,11 +1,13 @@
 package com.islandsoftware.kollector.service;
 
 import com.islandsoftware.kollector.exceptions.DataNotFoundException;
+import com.islandsoftware.kollector.exceptions.ProductSaveException;
 import com.islandsoftware.kollector.model.Category;
 import com.islandsoftware.kollector.model.Product;
 import com.islandsoftware.kollector.repositories.ProductRepository;
 import com.islandsoftware.kollector.request.ProductRequest;
 import com.islandsoftware.kollector.response.ProductResponse;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,27 +25,8 @@ public class ProductService {
 
     @Autowired
     private CategoryService categoryService;
-
-    public Product getProductById(UUID uuid) throws DataNotFoundException {
-        var productOptional = productRepository.findById(uuid);
-
-        return productOptional.orElseThrow(() -> new DataNotFoundException("Sorry! product not found."));
-    }
-
-    public List<ProductResponse> getAllProducts() throws DataNotFoundException {
-        var products = productRepository.findAll();
-
-        if (products.isEmpty()) {
-            throw new DataNotFoundException("Sorry! No products found.");
-        }
-
-        return products.stream().map((Product p) ->
-                new ProductResponse(p.getProductId(), p.getName(), p.getDescription(), p.getSpecification(),
-                        categoryService.extractCategoryNames(p.getCategories()),
-                        p.getQuantity(), p.getPrice(), p.isActive())).toList();
-    }
-
-    public ProductResponse registerProduct(ProductRequest request) {
+    
+    private Product mapProductRequestToProduct(ProductRequest request) {
         var product = new Product();
 
         BeanUtils.copyProperties(request, product);
@@ -51,13 +34,69 @@ public class ProductService {
         Set<Category> categories = categoryService.getCategoriesById(request.categories());
 
         product.setCategories(categories);
+
+        return product;
+    }
+
+    private ProductResponse mapProductToProductResponse(Product product) {
+        return new ProductResponse(product.getProductId(), product.getName(), product.getDescription(),
+                product.getSpecification(), categoryService.extractCategoryNames(product.getCategories()),
+                product.getQuantity(), product.getPrice(), product.isActive());
+    }
+
+    private Product getProductById(UUID uuid) throws DataNotFoundException {
+        var productOptional = productRepository.findById(uuid);
+
+        return productOptional.orElseThrow(() -> new DataNotFoundException("Sorry! product not found."));
+    }
+
+    @Transactional
+    public ProductResponse getOneProduct(UUID uuid) throws DataNotFoundException {
+        var product = this.getProductById(uuid);
+        return this.mapProductToProductResponse(product);
+    }
+
+    @Transactional
+    public List<ProductResponse> getAllProducts() throws DataNotFoundException {
+        var products = productRepository.findAll();
+
+        if (products.isEmpty()) {
+            throw new DataNotFoundException("Sorry! No products found.");
+        }
+
+        return products.stream()
+                .map(this::mapProductToProductResponse)
+                .toList();
+    }
+
+    @Transactional
+    public ProductResponse registerProduct(ProductRequest request) throws ProductSaveException {
+        var product = this.mapProductRequestToProduct(request);
         product.setCreatedAt(LocalDateTime.now());
         product.setUpdatedAt(LocalDateTime.now());
 
         productRepository.save(product);
 
-        return new ProductResponse(product.getProductId(), product.getName(), product.getDescription(),
-                product.getSpecification(), categoryService.extractCategoryNames(product.getCategories()),
-                product.getQuantity(), product.getPrice(), product.isActive());
+        return mapProductToProductResponse(product);
     }
+
+    @Transactional
+    public ProductResponse updateProduct(UUID id, ProductRequest request) throws DataNotFoundException, ProductSaveException {
+        var product = this.getProductById(id);
+        var productConverted = this.mapProductRequestToProduct(request);
+
+        product.setName(productConverted.getName());
+        product.setDescription(productConverted.getDescription());
+        product.setSpecification(productConverted.getSpecification());
+        product.setCategories(productConverted.getCategories());
+        product.setQuantity(productConverted.getQuantity());
+        product.setPrice(productConverted.getPrice());
+        product.setActive(productConverted.isActive());
+        product.setUpdatedAt(LocalDateTime.now());
+
+        productRepository.save(product);
+
+        return mapProductToProductResponse(product);
+    }
+
 }
