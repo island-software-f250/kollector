@@ -2,6 +2,7 @@ package com.islandsoftware.kollector.controller;
 
 
 import com.islandsoftware.kollector.exceptions.DataNotFoundException;
+import com.islandsoftware.kollector.exceptions.ProductSaveException;
 import com.islandsoftware.kollector.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,5 +17,12 @@ public class ErrorHandlerController {
         var errorResponse = new ErrorResponse(ex.getMessage());
 
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ProductSaveException.class)
+    public ResponseEntity<ErrorResponse> handleProductSaveException(ProductSaveException ex) {
+        var errorResponse = new ErrorResponse(ex.getMessage());
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
