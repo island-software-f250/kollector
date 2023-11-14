@@ -1,4 +1,4 @@
-package com.islandsoftware.kollector.exceptions;
+package com.islandsoftwaref250.kollector.exceptions;
 
 public class ProductSaveException extends RuntimeException {
 

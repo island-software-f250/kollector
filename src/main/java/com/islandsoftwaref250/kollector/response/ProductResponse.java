@@ -1,4 +1,4 @@
-package com.islandsoftware.kollector.response;
+package com.islandsoftwaref250.kollector.response;
 
 import java.math.BigDecimal;
 import java.util.Set;

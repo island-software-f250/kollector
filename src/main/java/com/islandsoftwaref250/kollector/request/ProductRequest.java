@@ -1,4 +1,4 @@
-package com.islandsoftware.kollector.request;
+package com.islandsoftwaref250.kollector.request;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;

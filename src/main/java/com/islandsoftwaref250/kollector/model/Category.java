@@ -1,4 +1,4 @@
-package com.islandsoftware.kollector.model;
+package com.islandsoftwaref250.kollector.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

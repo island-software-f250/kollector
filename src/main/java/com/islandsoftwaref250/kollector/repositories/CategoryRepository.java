@@ -1,6 +1,6 @@
-package com.islandsoftware.kollector.repositories;
+package com.islandsoftwaref250.kollector.repositories;
 
-import com.islandsoftware.kollector.model.Category;
+import com.islandsoftwaref250.kollector.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
