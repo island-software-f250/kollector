@@ -1,7 +1,7 @@
-package com.islandsoftware.kollector.service;
+package com.islandsoftwaref250.kollector.service;
 
-import com.islandsoftware.kollector.model.Category;
-import com.islandsoftware.kollector.repositories.CategoryRepository;
+import com.islandsoftwaref250.kollector.model.Category;
+import com.islandsoftwaref250.kollector.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

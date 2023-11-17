@@ -1,10 +1,10 @@
-package com.islandsoftware.kollector.controller;
+package com.islandsoftwaref250.kollector.controller;
 
 
-import com.islandsoftware.kollector.exceptions.ProductSaveException;
-import com.islandsoftware.kollector.request.ProductRequest;
-import com.islandsoftware.kollector.response.ProductResponse;
-import com.islandsoftware.kollector.service.ProductService;
+import com.islandsoftwaref250.kollector.exceptions.ProductSaveException;
+import com.islandsoftwaref250.kollector.request.ProductRequest;
+import com.islandsoftwaref250.kollector.response.ProductResponse;
+import com.islandsoftwaref250.kollector.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.islandsoftware.kollector;
+package com.islandsoftwaref250.kollector;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

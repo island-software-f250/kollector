@@ -1,4 +1,4 @@
-package com.islandsoftware.kollector.model;
+package com.islandsoftwaref250.kollector.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -19,7 +19,7 @@ import java.util.UUID;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID categoryId;
 
     @NotNull

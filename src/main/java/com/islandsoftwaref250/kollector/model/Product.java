@@ -1,4 +1,4 @@
-package com.islandsoftware.kollector.model;
+package com.islandsoftwaref250.kollector.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
@@ -21,7 +21,7 @@ import java.util.UUID;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID productId;
 
     @JsonBackReference

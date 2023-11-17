@@ -1,4 +1,4 @@
-package com.islandsoftware.kollector.exceptions;
+package com.islandsoftwaref250.kollector.exceptions;
 
 import java.util.NoSuchElementException;
 

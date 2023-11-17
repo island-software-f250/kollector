@@ -1,12 +1,12 @@
-package com.islandsoftware.kollector.service;
+package com.islandsoftwaref250.kollector.service;
 
-import com.islandsoftware.kollector.exceptions.DataNotFoundException;
-import com.islandsoftware.kollector.exceptions.ProductSaveException;
-import com.islandsoftware.kollector.model.Category;
-import com.islandsoftware.kollector.model.Product;
-import com.islandsoftware.kollector.repositories.ProductRepository;
-import com.islandsoftware.kollector.request.ProductRequest;
-import com.islandsoftware.kollector.response.ProductResponse;
+import com.islandsoftwaref250.kollector.exceptions.DataNotFoundException;
+import com.islandsoftwaref250.kollector.exceptions.ProductSaveException;
+import com.islandsoftwaref250.kollector.model.Category;
+import com.islandsoftwaref250.kollector.model.Product;
+import com.islandsoftwaref250.kollector.repositories.ProductRepository;
+import com.islandsoftwaref250.kollector.request.ProductRequest;
+import com.islandsoftwaref250.kollector.response.ProductResponse;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
